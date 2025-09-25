@@ -12,7 +12,7 @@ class TestFunction(unittest.TestCase):
         result = add(-8, -11)
         self.assertEqual(result, -19)
 
-    def test_decimal_addition(self):
+    def test_addition_float_numbers(self):
         result = add(3.5, 5.5)
         self.assertAlmostEqual(result, 9.0, places=2)
 
