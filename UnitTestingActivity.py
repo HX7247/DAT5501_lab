@@ -1,20 +1,29 @@
 import unittest
 
-def add(a, b):
-    return a + b
+initial_value = input("What is the initial value?:")
+final_value = input("What is the final value?: ")
 
-class TestFunction(unittest.TestCase):
-    def test_positive_addition(self):
-        result = add(39, 12)
-        self.assertEqual(result, 51)
+def calculate_change(initial, final):
+    numerator = float(final) - float(initial)
+    denominator = float(initial)
+    change = (numerator / denominator) * 100
+    return change
 
-    def test_negative_addition(self):
-        result = add(-8, -11)
-        self.assertEqual(result, -19)
-
-    def test_addition_float_numbers(self):
-        result = add(3.5, 5.5)
-        self.assertAlmostEqual(result, 9.0, places=2)
+class TestCalculateChange(unittest.TestCase):
+    def test_positive_change(self):
+        self.assertAlmostEqual(calculate_change(50, 75), 50.0)
+    
+    def test_negative_change(self):
+        self.assertAlmostEqual(calculate_change(100, 50), -50.0)
+    
+    def test_no_change(self):
+        self.assertAlmostEqual(calculate_change(30, 30), 0.0)
+    
+    def test_large_increase(self):
+        self.assertAlmostEqual(calculate_change(20, 80), 300.0)
+    
+    def test_large_decrease(self):
+        self.assertAlmostEqual(calculate_change(80, 20), -75.0)
 
 if __name__ == "__main__":
     unittest.main()
