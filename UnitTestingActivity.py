@@ -1,8 +1,5 @@
 import unittest
 
-initial_value = input("What is the initial value?:")
-final_value = input("What is the final value?: ")
-
 def calculate_change(initial, final):
     numerator = float(final) - float(initial)
     denominator = float(initial)
