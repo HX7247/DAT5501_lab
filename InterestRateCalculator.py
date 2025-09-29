@@ -1,4 +1,4 @@
-def CompoundInterestCalculator(savings, annualInterestRate, years ):
+def CompoundInterestCalculator(savings, annualInterestRate, years):
    
     multiply = annualInterestRate/100
     for i in range (years):
