@@ -1,1 +1,17 @@
+def InterestRateCalculator(savings, annual_rate, years):
+    annual_rate1 = annual_rate / 100
+    values_per_year = []
+    initial_savings = savings
+    for year in range(1, years + 1):
+        savings = savings * (1 + annual_rate1)
+        values_per_year.append(round(savings, 2))
+    while initial_savings * 2 > savings:
+        initial_savings = initial_savings * (1 + annual_rate1)
+        double_year = year
+        year = year + 1
+    return values_per_year, double_year
 
+values, double_year = InterestRateCalculator(1000, 5, 10)
+print("Value each year:", values)
+if double_year:
+    print("The savings doubled in year:", double_year)
