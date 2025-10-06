@@ -8,8 +8,12 @@ if start_day not in ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Sa
     print("Invalid day. Please enter a valid day of the week. In the format: Monday, Tuesday, etc.")
     exit()
 
+print("Mon Tue Wed Thu Fri Sat Sun")
+for day in range(["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].index(start_day)):
+    print("    ", end="")
+
 for day in range(1, days_in_a_month + 1):
-    print(f"{day:2}", end=" ")
+    print(f"{day:2}", end="  ")
     if (day + ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].index(start_day)) % 7 == 0:
         print()
 
