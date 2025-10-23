@@ -1,5 +1,7 @@
 import datetime
+import unittest
 
+# Calculate days until a given date in ISO format (YYYY-MM-DD) and handles invalid formats
 def days_until_date_iso(s: str) -> int:
     target = datetime.date.fromisoformat(s.strip())
     return (target - datetime.date.today()).days
