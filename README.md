@@ -1,10 +1,5 @@
 # DAT5501_lab
 
-## Project Overview
-This repository contains various Python scripts for data analysis, sorting complexity studies, and utility programs.
-
----
-
 ## Code Documentation
 
 ### 1. **daily_price_change_sorting_activity.py**
@@ -26,8 +21,6 @@ This repository contains various Python scripts for data analysis, sorting compl
 
 **Output:** Plot showing sorting time complexity analysis
 
----
-
 ### 2. **Duration_calculator.py**
 **Purpose:** Calculates the number of days until/since a target date in ISO format (YYYY-MM-DD).
 
@@ -43,8 +36,6 @@ This repository contains various Python scripts for data analysis, sorting compl
 
 **Usage:** Run the script and enter a date in YYYY-MM-DD format
 
----
-
 ### 3. **calendar_printer.py**
 **Purpose:** Generates an ASCII calendar for a given month and starting day.
 
@@ -57,8 +48,6 @@ This repository contains various Python scripts for data analysis, sorting compl
 - None (uses built-in functions)
 
 **Usage:** Run the script and provide month length and starting day
-
----
 
 ### 4. **advanced_data_fitting.py**
 **Purpose:** Generates quadratic data with noise and performs polynomial fitting with statistical analysis.
@@ -80,8 +69,6 @@ This repository contains various Python scripts for data analysis, sorting compl
 - `quadratic_data.csv` (generated data)
 - `quadratic_fit.png` (plot)
 
----
-
 ### 5. **continental_meat_production.py**
 **Purpose:** Analyzes and visualizes total meat production by continent.
 
@@ -100,8 +87,6 @@ This repository contains various Python scripts for data analysis, sorting compl
 **Input Data:** `data/global-meat-production.csv`
 
 **Output:** Bar chart showing continental meat production
-
----
 
 ### 6. **meat_supply_by_continent.py**
 **Purpose:** Analyzes relationship between meat supply per capita and GDP per capita by continent.
@@ -128,8 +113,6 @@ This repository contains various Python scripts for data analysis, sorting compl
 - Regional mean analysis plot
 - Console output with regression statistics
 
----
-
 ### 7. **meat_supply_vs_GDP_per_capita.py**
 **Purpose:** Simplified version that plots meat supply vs GDP per capita with optional regional coloring.
 
@@ -150,8 +133,6 @@ This repository contains various Python scripts for data analysis, sorting compl
 
 **Output:** Scatter plot with linear fit line
 
----
-
 ### 8. **InterestRateCalculator.py**
 **Purpose:** Calculates compound interest growth over multiple years.
 
@@ -166,8 +147,6 @@ This repository contains various Python scripts for data analysis, sorting compl
 
 **Usage:** Run script (configured to run with $1000, 50% interest, 10 years)
 
----
-
 ### 9. **UnitTestingActivity.py**
 **Purpose:** Demonstrates unit testing with a percentage change calculator.
 
@@ -181,8 +160,6 @@ This repository contains various Python scripts for data analysis, sorting compl
 
 **Usage:** Run with `python -m unittest UnitTestingActivity.py`
 
----
-
 ### 10. **VersionControlActivity.py**
 **Purpose:** Simple demonstration script for version control practice.
 
@@ -191,8 +168,6 @@ This repository contains various Python scripts for data analysis, sorting compl
 
 **Dependencies:**
 - None (uses built-in functions)
-
----
 
 ### 11. **meat_production.py**
 **Purpose:** Analyzes and visualizes meat production by country.
@@ -214,8 +189,6 @@ This repository contains various Python scripts for data analysis, sorting compl
 
 **Output:** Bar chart showing top countries by meat production
 
----
-
 ## Required Data Files
 
 Place the following CSV files in the `data/` directory:
@@ -224,8 +197,6 @@ Place the following CSV files in the `data/` directory:
 - `global-meat-production.csv` - Global meat production by continent
 - `Meat Supply Vs GDP Per capita.csv` - Meat supply and GDP data by country
 - `meat-production-tonnes.csv` - Meat production by country in tonnes
-
----
 
 ## Installation
 
@@ -236,8 +207,6 @@ pip install numpy pandas matplotlib
 
 ### Python version:
 - Python 3.7 or higher
-
----
 
 ## File Structure
 ```
