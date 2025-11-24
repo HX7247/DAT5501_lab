@@ -1,0 +1,91 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import classification_report, precision_score, recall_score
+from sklearn.preprocessing import OneHotEncoder
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
+
+# Load stock price data
+file_path = r"C:\Users\test\DAT5501_lab\DAT5501_lab-2\data\bank.csv"
+# bank.csv uses semicolons as separators
+df = pd.read_csv(file_path, sep=';', quotechar='"')
+
+# Added: decision tree classification pipeline (scikit-learn)
+def build_and_eval_decision_tree(df: pd.DataFrame, sample_n: int = 2000, random_state: int = 42):
+    """
+    Build a DecisionTreeClassifier on bank.csv and print precision/recall.
+    - samples sample_n rows (set sample_n=None to use all rows)
+    """
+    # Optional downsample for quicker experiments
+    if sample_n:
+        sample_n = min(sample_n, len(df))
+        df = df.sample(n=sample_n, random_state=random_state)
+
+    # Target and basic cleaning
+    # The dataset column "y" is the label ("yes"/"no")
+    if "y" not in df.columns:
+        raise KeyError("Target column 'y' not found. Check CSV separator and header. Columns: " + ", ".join(df.columns.astype(str)))
+    df = df.dropna(subset=["y"]).copy()
+    y = (df["y"].str.lower() == "yes").astype(int)  # 1 = yes, 0 = no
+
+    # Select a small, useful feature set (mix numeric + categorical)
+    desired_numeric = ["age", "balance", "duration", "campaign", "pdays", "previous"]
+    categorical_features = ["job", "marital", "education", "housing", "loan", "contact", "month"]
+
+    # Keep only numeric features that exist, coerce them safely
+    numeric_features = [c for c in desired_numeric if c in df.columns]
+    for col in numeric_features:
+        df[col] = pd.to_numeric(df[col], errors="coerce").fillna(0)
+
+    # Keep only existing categorical features
+    categorical_features = [c for c in categorical_features if c in df.columns]
+
+    # Keep only desired columns (drop any rows missing selected columns)
+    X_cols = numeric_features + categorical_features
+    if not X_cols:
+        raise ValueError("No feature columns found after filtering. Columns present: " + ", ".join(df.columns.astype(str)))
+    X = df[X_cols].copy()
+
+    # Preprocessing: one-hot encode categoricals, pass through numeric
+    preprocessor = ColumnTransformer(
+        transformers=[
+            ("num", "passthrough", numeric_features),
+            ("cat", OneHotEncoder(handle_unknown="ignore", sparse_output=False), categorical_features)
+        ],
+        remainder="drop",
+    )
+
+    # Pipeline with Decision Tree
+    clf = Pipeline(
+        steps=[
+            ("pre", preprocessor),
+            ("dt", DecisionTreeClassifier(max_depth=6, random_state=random_state))
+        ]
+    )
+
+    # Train/test split
+    X_train, X_test, y_train, y_test = train_test_split(X, y, stratify=y, test_size=0.3, random_state=random_state)
+
+    # Fit and predict
+    clf.fit(X_train, y_train)
+    y_pred = clf.predict(X_test)
+
+    # Metrics: precision & recall (binary) and full classification report
+    prec = precision_score(y_test, y_pred, zero_division=0)
+    rec = recall_score(y_test, y_pred, zero_division=0)
+    report = classification_report(y_test, y_pred, digits=4)
+
+    print("Decision Tree (max_depth=6) evaluation on bank.csv sample")
+    print(f"Precision (positive class='yes') = {prec:.4f}")
+    print(f"Recall    (positive class='yes') = {rec:.4f}")
+    print("\nFull classification report:\n", report)
+
+    return clf, (X_test, y_test, y_pred)
+
+if __name__ == "__main__":
+    # Use the dataframe loaded above: [`df`](decision_tree_banking_data)
+    # File path variable: [`file_path`](decision_tree_banking_data)
+    model, results = build_and_eval_decision_tree(df, sample_n=2000)
