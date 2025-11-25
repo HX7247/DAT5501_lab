@@ -7,7 +7,7 @@
 
 **What it does:**
 - Loads NVIDIA historical stock data
-- Calculates daily price changes (ΔP = P_{n+1} - P_n)
+- Calculates daily price changes 
 - Measures sorting time for array sizes from 10 to 100,000
 - Plots measured sorting times against theoretical O(n log n) complexity
 - Calculates correlation coefficient between measured and theoretical times
@@ -95,7 +95,7 @@
 - Loads meat supply and GDP data by country
 - Creates scatter plots with regional color coding
 - Performs linear regression analysis
-- Calculates correlation coefficients (R, R²)
+- Calculates correlation coefficients 
 - Provides both individual country and regional mean analysis
 - Generates statistical summaries per region
 
@@ -189,6 +189,61 @@
 
 **Output:** Bar chart showing top countries by meat production
 
+### 12. **decision_tree_banking_data**
+**Purpose:** Trains a decision tree classifier to predict bank marketing campaign outcomes (subscription yes/no).
+
+**What it does:**
+- Loads bank marketing data 
+- Samples 2000 rows for training 
+- Preprocesses numeric and categorical features using scikit-learn pipelines
+- One-hot encodes categorical variables
+- Trains DecisionTreeClassifier
+- Evaluates model with precision, recall, and classification report
+- Handles missing values and validates data structure
+
+**Dependencies:**
+- `numpy`
+- `pandas`
+- `matplotlib`
+- `scikit-learn`
+
+**Input Data:** `data/bank.csv`
+
+**Output:** 
+- Console output with precision, recall, and classification report
+- Model performance metrics for binary classification
+
+**Usage:** Run script with default parameters or pass custom CSV path as argument
+
+### 13. **mushroom_classification_decision_tree.py**
+**Purpose:** Classifies mushrooms as edible or poisonous using decision tree on UCI Mushroom dataset.
+
+**What it does:**
+- Fetches UCI Mushroom dataset 
+- Label-encodes all categorical features
+- Maps target labels from 'e'/'p' to 'edible'/'poisonous' for readability
+- Trains DecisionTreeClassifier with configurable max_depth
+- Evaluates with precision, recall, and confusion matrix
+- Visualizes decision tree structure 
+- Creates heatmap confusion matrix
+
+**Dependencies:**
+- `pandas`
+- `scikit-learn`
+- `matplotlib`
+- `seaborn`
+- `ucimlrepo`
+
+**Input Data:** UCI ML Repository (fetched automatically)
+
+**Output:** 
+- Classification report with precision/recall metrics
+- Confusion matrix heatmap
+- Decision tree visualization 
+- Console output with dataset metadata and variable information
+
+**Usage:** Run script directly; dataset is fetched automatically from UCI repository
+
 ## Required Data Files
 
 Place the following CSV files in the `data/` directory:
@@ -197,12 +252,13 @@ Place the following CSV files in the `data/` directory:
 - `global-meat-production.csv` - Global meat production by continent
 - `Meat Supply Vs GDP Per capita.csv` - Meat supply and GDP data by country
 - `meat-production-tonnes.csv` - Meat production by country in tonnes
+- `bank.csv` - Bank marketing campaign data 
 
 ## Installation
 
 ### Install required packages:
 ```bash
-pip install numpy pandas matplotlib
+pip install numpy pandas matplotlib scikit-learn seaborn ucimlrepo
 ```
 
 ### Python version:
@@ -223,9 +279,12 @@ DAT5501_lab-2/
 ├── UnitTestingActivity.py
 ├── VersionControlActivity.py
 ├── meat_production.py
+├── decision_tree_banking_data
+├── mushroom_classification_decision_tree.py
 └── data/
     ├── HistoricalData_NVDA.csv
     ├── global-meat-production.csv
     ├── Meat Supply Vs GDP Per capita.csv
-    └── meat-production-tonnes.csv
+    ├── meat-production-tonnes.csv
+    └── bank.csv
 ```
