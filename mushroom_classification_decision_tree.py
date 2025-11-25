@@ -22,8 +22,6 @@ print(mushroom.variables)
 
 
 # Decision Tree Classification Pipeline
-
-
 def encode_categorical(X_df, y_df):
     """Label-encode all categorical features and target."""
     X_encoded = X_df.copy()
@@ -38,8 +36,13 @@ def encode_categorical(X_df, y_df):
         y_series = y_df.iloc[:, 0]
     else:
         y_series = y_df
+    
+    # Map e->edible, p->poisonous before encoding
+    y_series = y_series.astype(str).str.lower()
+    y_series = y_series.replace({'e': 'edible', 'p': 'poisonous'})
+    
     le_y = LabelEncoder()
-    y_encoded = le_y.fit_transform(y_series.astype(str))
+    y_encoded = le_y.fit_transform(y_series)
     return X_encoded, y_encoded, le_y
 
 def train_and_evaluate_mushroom(X, y, test_size=0.2, max_depth=5, random_state=42):
